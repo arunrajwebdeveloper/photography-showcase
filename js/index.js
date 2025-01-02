@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         markers: false, // Set to true for debugging
       });
-
       // Set initial state based on the element's visibility
       if (!ScrollTrigger.isInViewport(elem)) {
         const bounds = elem.getBoundingClientRect();
@@ -162,4 +161,72 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // ANIMATE TEXT
+
+  const textRevealUpAnimation = (element) => {
+    const elements = document.querySelectorAll(element); // Select all elements with the specified class
+
+    if (elements.length > 0) {
+      elements.forEach((theText) => {
+        let newText = "";
+        for (let i = 0; i < theText.innerText.length; i++) {
+          newText += "<div>";
+          if (theText.innerText[i] === " ") {
+            newText += "&nbsp;";
+          } else {
+            newText += theText.innerText[i];
+          }
+          newText += "</div>";
+        }
+
+        theText.innerHTML = newText;
+
+        const tl = gsap.timeline();
+        tl.from(theText.querySelectorAll("div"), {
+          y: 100,
+          opacity: 0,
+          ease: "power4.out",
+          delay: 0.5,
+          skewY: 2,
+          stagger: {
+            amount: 0.3,
+          },
+          duration: 1.2,
+        });
+      });
+    }
+  };
+
+  textRevealUpAnimation(".revealUp");
+
+  // REVEAL ELEMENT
+
+  const elementRevealUpAnimation = (element) => {
+    const elements = document.querySelectorAll(element); // Select all elements with the specified class
+
+    if (elements.length > 0) {
+      elements.forEach((ele) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ele,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        tl.from(ele, {
+          y: 200,
+          opacity: 0,
+          delay: 0.6,
+          ease: "power4.out",
+          skewY: 0,
+          duration: 1.2, // Duration of the animation
+        });
+      });
+    }
+  };
+
+  // Initialize animation for elements with the class '.animateUp'
+  elementRevealUpAnimation(".animateUp");
 });
