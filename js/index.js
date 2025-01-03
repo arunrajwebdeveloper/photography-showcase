@@ -242,3 +242,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   elementRevealUpAnimation(".animateUp");
 });
+
+// ScrollTrigger refresh on resize
+window.addEventListener("resize", () => {
+  ScrollTrigger.refresh();
+});
+
+window.addEventListener("orientationchange", () => {
+  ScrollTrigger.refresh();
+});
