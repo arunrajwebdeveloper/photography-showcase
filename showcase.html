@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photography Showcase</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/screens.css" />
   </head>
   <body>
     <!-- SPINNER -->
 
     <div class="spinner" id="spinner">
-      <div class="spinner-circle"></div>
+      <div class="spinner-contant">
+        <div class="spinner-circle"></div>
+        <div id="loading-percentage" class="loading-percentage">0%</div>
+      </div>
     </div>
 
     <header class="main-header">
@@ -24,12 +28,15 @@
             <nav class="nav">
               <a class="link" href="/about-me.html">about</a>
               <a class="link active" href="javascript:void(0)">showcase</a>
+              <a class="link" href="/contact.html">contact</a>
             </nav>
           </div>
           <div class="header-column">
-            <nav class="nav">
-              <a class="link" href="">contact</a>
-            </nav>
+            <div class="theme-switcher">
+              <button data-theme="white">White</button>
+              <button data-theme="blue">Blue</button>
+              <button data-theme="dark">Dark</button>
+            </div>
           </div>
         </div>
       </div>
@@ -38,7 +45,12 @@
     <section class="main-wrapper">
       <div class="container">
         <div class="showcase-wrapper">
-          <ul class="image-grid">
+          <ul
+            class="image-grid animateUp"
+            id="image-grid"
+            data-delay="0.5"
+            data-trigger=".showcase-wrapper"
+          >
             <li class="image-grid-item">
               <a
                 data-fancybox="gallery"
@@ -549,14 +561,14 @@
             </li>
           </ul>
           <div class="showcase-end-message">
-            You reached the end of image collection
+            "You’ve reached the end, but the memories don’t stop here. Let’s
+            create your story together—get in touch today!"
           </div>
         </div>
       </div>
     </section>
 
     <div class="canvas-grid">
-      <div class="canvas-column"></div>
       <div class="canvas-column"></div>
       <div class="canvas-column"></div>
       <div class="canvas-column"></div>

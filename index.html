@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photography Showcase</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/screens.css" />
   </head>
   <body>
     <!-- SPINNER -->
 
     <div class="spinner" id="spinner">
-      <div class="spinner-circle"></div>
+      <div class="spinner-contant">
+        <div class="spinner-circle"></div>
+        <div id="loading-percentage" class="loading-percentage">0%</div>
+      </div>
     </div>
 
     <header class="main-header">
@@ -24,20 +28,27 @@
             <nav class="nav">
               <a class="link" href="/about-me.html">about</a>
               <a class="link" href="/showcase.html">showcase</a>
+              <a class="link" href="/contact.html">contact</a>
             </nav>
           </div>
           <div class="header-column">
-            <nav class="nav">
-              <a class="link" href="">contact</a>
-            </nav>
+            <div class="theme-switcher">
+              <button data-theme="white">White</button>
+              <button data-theme="blue">Blue</button>
+              <button data-theme="dark">Dark</button>
+            </div>
           </div>
         </div>
       </div>
     </header>
     <section class="hero-section">
       <h1 class="hero-title">
-        <div class="revealUp">subin</div>
-        <div class="revealUp">sudha</div>
+        <div class="animateUp" data-delay="0.6" data-trigger=".hero-section">
+          subin
+        </div>
+        <div class="animateUp" data-delay="0.9" data-trigger=".hero-section">
+          sudha
+        </div>
       </h1>
     </section>
     <section class="card-section pinned">
@@ -90,21 +101,37 @@
     </section>
     <footer class="main-footer">
       <div class="container">
-        <div class="footer-informations animateUp">
+        <div class="footer-informations">
           <div class="contact-text">
-            <p class="footer-caption-text">
+            <p
+              class="footer-caption-text animateUp"
+              data-delay="0.5"
+              data-trigger=".main-footer"
+            >
               "Let’s create something beautiful together. Reach out today!"
             </p>
-            <a class="link" href="">hello@subinsudha.in</a>
+            <div class="animateUp" data-delay="0.7" data-trigger=".main-footer">
+              <a class="link" href="mailto:hello@subinsudha.in">
+                hello@subinsudha.in
+              </a>
+            </div>
           </div>
           <div class="footer-basic-infos">
-            <div class="basic-info-row">
+            <div
+              class="basic-info-row animateUp"
+              data-delay="0.9"
+              data-trigger=".main-footer"
+            >
               <a href="" class="footer-link link">instagram</a>
               <a href="" class="footer-link link">facebook</a>
               <a href="" class="footer-link link">linkedin</a>
             </div>
             <div class="basic-info-row footer-copyright">
-              <p class="footer-sm-text">
+              <p
+                class="footer-sm-text animateUp"
+                data-delay="1"
+                data-trigger=".main-footer"
+              >
                 &copy;
                 <script type="text/javascript">
                   document.write(new Date().getFullYear());
@@ -132,7 +159,6 @@
     </footer>
 
     <div class="canvas-grid">
-      <div class="canvas-column"></div>
       <div class="canvas-column"></div>
       <div class="canvas-column"></div>
       <div class="canvas-column"></div>

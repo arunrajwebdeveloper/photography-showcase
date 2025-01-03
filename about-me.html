@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photography Showcase</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/screens.css" />
   </head>
   <body>
     <!-- SPINNER -->
 
     <div class="spinner" id="spinner">
-      <div class="spinner-circle"></div>
+      <div class="spinner-contant">
+        <div class="spinner-circle"></div>
+        <div id="loading-percentage" class="loading-percentage">0%</div>
+      </div>
     </div>
 
     <header class="main-header">
@@ -24,12 +28,15 @@
             <nav class="nav">
               <a class="link active" href="javascript:void(0)">about</a>
               <a class="link" href="/showcase.html">showcase</a>
+              <a class="link" href="/contact.html">contact</a>
             </nav>
           </div>
           <div class="header-column">
-            <nav class="nav">
-              <a class="link" href="">contact</a>
-            </nav>
+            <div class="theme-switcher">
+              <button data-theme="white">White</button>
+              <button data-theme="blue">Blue</button>
+              <button data-theme="dark">Dark</button>
+            </div>
           </div>
         </div>
       </div>
@@ -37,12 +44,11 @@
 
     <section class="main-wrapper">
       <div class="container">
-        <div class="about-wrapper">
-          <h1 class="about-title revealUp">
+        <div class="inner-page-wrapper">
+          <h1 class="inner-page-title animateUp" data-delay="0.5">
             "Capturing Timeless Stories Through My Lens"
           </h1>
-
-          <p class="about-sub-title animateUp">
+          <p class="about-sub-title animateUp" data-delay="0.6">
             Every moment tells a story, and I strive to capture it in its purest
             form. From the joy of weddings to the spontaneity of street life, my
             lens seeks the beauty in every detail. With a blend of creativity
@@ -52,7 +58,7 @@
         </div>
       </div>
 
-      <div class="avatar-wide animateUp">
+      <div class="avatar-wide animateUp" data-delay="0.7">
         <img
           src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?q=80&w=1944"
           alt="photographer avatar"
@@ -60,8 +66,8 @@
       </div>
 
       <div class="container">
-        <div class="about-wrapper">
-          <div class="about-description animateUp">
+        <div class="inner-page-wrapper">
+          <div class="about-description animateUp" data-delay="0.8">
             <p>
               Welcome to my world of photography! I’m Subin Sudha, a passionate
               professional photographer hailing from the vibrant state of
@@ -97,7 +103,6 @@
     </section>
 
     <div class="canvas-grid">
-      <div class="canvas-column"></div>
       <div class="canvas-column"></div>
       <div class="canvas-column"></div>
       <div class="canvas-column"></div>

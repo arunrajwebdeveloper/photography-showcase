@@ -2,43 +2,112 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
   // *************************************************************************
   // *************************************************************************
+  // **************************   THEME SWITCHER   ***************************
+  // *************************************************************************
+  // *************************************************************************
+  // *************************************************************************
+
+  const themeButtons = document.querySelectorAll(".theme-switcher button");
+  const defaultTheme = "white";
+  const savedTheme = localStorage.getItem("ss-theme") || defaultTheme;
+
+  document.body.setAttribute("data-theme", savedTheme);
+  highlightActiveButton(savedTheme);
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedTheme = button.getAttribute("data-theme");
+      document.body.setAttribute("data-theme", selectedTheme);
+      localStorage.setItem("ss-theme", selectedTheme);
+      highlightActiveButton(selectedTheme);
+    });
+  });
+
+  function highlightActiveButton(theme) {
+    themeButtons.forEach((button) => {
+      if (button.getAttribute("data-theme") === theme) {
+        button.classList.add("active");
+      } else {
+        button.classList.remove("active");
+      }
+    });
+  }
+
+  // THEME ANIMATION
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedTheme = button.getAttribute("data-theme");
+      gsap.to("body", {
+        duration: 0.5,
+        backgroundColor: getComputedStyle(document.body).getPropertyValue(
+          `--${selectedTheme}-bg`
+        ),
+        color: getComputedStyle(document.body).getPropertyValue(
+          `--${selectedTheme}-color`
+        ),
+      });
+      document.body.setAttribute("data-theme", selectedTheme);
+      localStorage.setItem("ss-theme", selectedTheme);
+    });
+  });
+
+  // *************************************************************************
+  // *************************************************************************
+  // *************************************************************************
   // ******************************   SPINNER   *****************************
   // *************************************************************************
   // *************************************************************************
   // *************************************************************************
 
   const images = document.querySelectorAll("img");
-  const totalImages = images.length;
-  let imagesLoaded = 0;
+  const totalImages = images?.length;
 
-  images.forEach((imgElement) => {
-    const img = new Image();
-    img.src = imgElement.src;
+  if (totalImages > 0) {
+    let imagesLoaded = 0;
+    const loader = document.getElementById("spinner");
+    const percentageDisplay = document.getElementById("loading-percentage");
 
-    img.onload = function () {
-      imagesLoaded++;
-      checkAllImagesLoaded();
-    };
+    images.forEach((imgElement) => {
+      const img = new Image();
+      img.src = imgElement.src;
 
-    img.onerror = function () {
-      console.error(`Failed to load image: ${img.src}`);
-      imagesLoaded++;
-      checkAllImagesLoaded();
-    };
-  });
+      img.onload = function () {
+        imagesLoaded++;
+        updateLoadingPercentage();
+        checkAllImagesLoaded();
+      };
 
-  function checkAllImagesLoaded() {
-    if (imagesLoaded === totalImages) {
-      const loader = document.getElementById("spinner");
+      img.onerror = function () {
+        console.error(`Failed to load image: ${img.src}`);
+        imagesLoaded++;
+        updateLoadingPercentage();
+        checkAllImagesLoaded();
+      };
+    });
 
-      gsap.to(loader, {
-        opacity: 0,
-        duration: 0.5,
-        onComplete: function () {
-          loader.remove();
-        },
-      });
+    function updateLoadingPercentage() {
+      const percentage = Math.round((imagesLoaded / totalImages) * 100);
+      percentageDisplay.textContent = `${percentage}%`;
     }
+
+    function checkAllImagesLoaded() {
+      if (imagesLoaded === totalImages) {
+        // Wait 1 second before removing the loader
+        setTimeout(() => {
+          gsap.to(loader, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: function () {
+              loader.remove();
+            },
+          });
+        }, 100);
+      }
+    }
+  } else {
+    const loader = document.getElementById("spinner");
+    loader.remove();
   }
 
   // *************************************************************************
@@ -115,118 +184,61 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
   // *************************************************************************
 
-  const imageGridItems = gsap.utils.toArray(".image-grid-item");
+  let proxy = { skew: 0 },
+    skewSetter = gsap.quickSetter(".image-grid-item", "skewY", "deg"), // fast
+    clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
 
-  if (imageGridItems.length > 0) {
-    imageGridItems.forEach((elem) => {
-      // Create a ScrollTrigger instance for each element
-      ScrollTrigger.create({
-        trigger: elem,
-        start: "top bottom", // When the element enters the viewport
-        end: "bottom top", // When the element exits the viewport
-        onEnter: () => {
-          // Remove both classes when the element is in the viewport
-          elem.classList.remove("tilt-from-top", "tilt-from-bottom");
-        },
-        onLeave: (self) => {
-          // Add tilt-from-top when the element leaves the bottom of the viewport
-          if (self.direction > 0) {
-            elem.classList.add("tilt-from-top");
-            elem.classList.remove("tilt-from-bottom");
-          }
-        },
-        onEnterBack: () => {
-          // Remove both classes when the element re-enters the viewport
-          elem.classList.remove("tilt-from-top", "tilt-from-bottom");
-        },
-        onLeaveBack: (self) => {
-          // Add tilt-from-bottom when the element leaves the top of the viewport
-          if (self.direction < 0) {
-            elem.classList.add("tilt-from-bottom");
-            elem.classList.remove("tilt-from-top");
-          }
-        },
-        markers: false, // Set to true for debugging
-      });
-      // Set initial state based on the element's visibility
-      if (!ScrollTrigger.isInViewport(elem)) {
-        const bounds = elem.getBoundingClientRect();
-        if (bounds.top < 0) {
-          // Element is out of the top of the viewport
-          elem.classList.add("tilt-from-bottom");
-        } else if (bounds.bottom > window.innerHeight) {
-          // Element is out of the bottom of the viewport
-          elem.classList.add("tilt-from-top");
-        }
-      }
-    });
-  }
-
-  // ANIMATE TEXT
-
-  const textRevealUpAnimation = (element) => {
-    const elements = document.querySelectorAll(element); // Select all elements with the specified class
-
-    if (elements.length > 0) {
-      elements.forEach((theText) => {
-        let newText = "";
-        for (let i = 0; i < theText.innerText.length; i++) {
-          newText += "<div>";
-          if (theText.innerText[i] === " ") {
-            newText += "&nbsp;";
-          } else {
-            newText += theText.innerText[i];
-          }
-          newText += "</div>";
-        }
-
-        theText.innerHTML = newText;
-
-        const tl = gsap.timeline();
-        tl.from(theText.querySelectorAll("div"), {
-          y: 100,
-          opacity: 0,
-          ease: "power4.out",
-          delay: 0.5,
-          skewY: 2,
-          stagger: {
-            amount: 0.3,
-          },
-          duration: 1.2,
+  ScrollTrigger.create({
+    onUpdate: (self) => {
+      let skew = clamp(self.getVelocity() / -300);
+      if (Math.abs(skew) > Math.abs(proxy.skew)) {
+        proxy.skew = skew;
+        gsap.to(proxy, {
+          skew: 0,
+          duration: 0.8,
+          ease: "power3",
+          overwrite: true,
+          onUpdate: () => skewSetter(proxy.skew),
         });
-      });
-    }
-  };
+      }
+    },
+  });
 
-  textRevealUpAnimation(".revealUp");
+  gsap.set(".image-grid-item", {
+    transformOrigin: "right center",
+    force3D: true,
+  });
 
   // REVEAL ELEMENT
 
   const elementRevealUpAnimation = (element) => {
-    const elements = document.querySelectorAll(element); // Select all elements with the specified class
+    const elements = document.querySelectorAll(element);
 
     if (elements.length > 0) {
       elements.forEach((ele) => {
+        const delay = parseFloat(ele.getAttribute("data-delay")) || 0;
+        const trigger = ele.getAttribute("data-trigger") || ele;
+
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: ele,
+            trigger: trigger,
             start: "top 90%",
             toggleActions: "play none none none",
           },
         });
 
         tl.from(ele, {
-          y: 200,
+          y: 100,
           opacity: 0,
-          delay: 0.6,
+          delay: delay,
           ease: "power4.out",
-          skewY: 0,
-          duration: 1.2, // Duration of the animation
+          skewY: 4,
+          scale: 0.8,
+          duration: 1.5,
         });
       });
     }
   };
 
-  // Initialize animation for elements with the class '.animateUp'
   elementRevealUpAnimation(".animateUp");
 });
