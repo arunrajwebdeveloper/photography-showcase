@@ -1,7 +1,7 @@
 /* > 768px */
 @media (min-width: 768px) {
   .canvas-grid {
-    grid-template-columns: repeat(4, 1fr); /* 2 lines */
+    grid-template-columns: repeat(4, 1fr);
   }
 
   ul.image-grid {
@@ -16,10 +16,6 @@
 /* > 1024px */
 
 @media (min-width: 1024px) {
-  .canvas-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 lines */
-  }
-
   .container {
     padding: 0 3rem;
   }
@@ -133,6 +129,9 @@
 /* LANDSCAPE- SMALL DEVICES */
 
 @media (max-width: 1023px) and (orientation: landscape) {
+  .canvas-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
   .hero-section h1.hero-title {
     font-size: 30vh;
   }

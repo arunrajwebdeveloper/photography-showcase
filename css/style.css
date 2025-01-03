@@ -93,6 +93,30 @@ body {
   border-color: #6576b9 !important;
 }
 
+/* LIGHTBOX */
+
+.fancybox__backdrop,
+.fancybox__thumbs {
+  background-color: var(--theme-color);
+}
+.fancybox__container .f-button {
+  background-color: transparent !important;
+  cursor: pointer !important;
+}
+.fancybox__container .f-button:disabled {
+  opacity: 0.4 !important;
+}
+.fancybox__container .f-button svg {
+  filter: none;
+  stroke: var(--text-color);
+}
+.fancybox__toolbar {
+  text-shadow: none;
+  color: var(--text-color);
+}
+
+/* LIGHTBOX END */
+
 /* SPINNER */
 
 .spinner {
