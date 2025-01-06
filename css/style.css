@@ -16,7 +16,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Plein", sans-serif;
+  /* font-family: "Plein", sans-serif; */
 }
 
 body[data-theme="dark"] {
