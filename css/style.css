@@ -41,6 +41,13 @@ body[data-theme="coffee"] {
   --menu-toggle-color: #ffffff;
 }
 
+body[data-theme="teal"] {
+  --theme-color: #789678 !important;
+  --text-color: #ffffff !important;
+  --scroll-bar-color: #87b787 !important;
+  --menu-toggle-color: #ffffff;
+}
+
 body {
   font-size: 16px;
   color: var(--text-color);
@@ -83,6 +90,9 @@ body {
 .theme-switcher button[data-theme="coffee"] {
   background-color: #4e343c;
 }
+.theme-switcher button[data-theme="teal"] {
+  background-color: #789678;
+}
 
 .theme-switcher button:hover {
   opacity: 0.8;
@@ -96,6 +106,9 @@ body {
 }
 .theme-switcher button[data-theme="coffee"].active {
   border-color: #8a4359 !important;
+}
+.theme-switcher button[data-theme="teal"].active {
+  border-color: #90af90 !important;
 }
 
 /* LIGHTBOX */
