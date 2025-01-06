@@ -40,15 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
   themeButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const selectedTheme = button.getAttribute("data-theme");
-      // gsap.to("body", {
-      //   duration: 0.5,
-      //   backgroundColor: getComputedStyle(document.body).getPropertyValue(
-      //     `--${selectedTheme}-bg`
-      //   ),
-      //   color: getComputedStyle(document.body).getPropertyValue(
-      //     `--${selectedTheme}-color`
-      //   ),
-      // });
+      gsap.to("body", {
+        duration: 0.5,
+        backgroundColor: getComputedStyle(document.body).getPropertyValue(
+          `--${selectedTheme}-bg`
+        ),
+        color: getComputedStyle(document.body).getPropertyValue(
+          `--${selectedTheme}-color`
+        ),
+      });
       document.body.setAttribute("data-theme", selectedTheme);
       localStorage.setItem("ss-theme", selectedTheme);
     });
