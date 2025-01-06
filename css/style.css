@@ -462,7 +462,9 @@ p.footer-caption-text {
 
 .basic-info-row.footer-copyright p.footer-sm-text {
   display: inline-block;
+  font-family: var(--plein-regular);
 }
+
 .basic-info-row p.footer-sm-text > a {
   text-decoration: none;
 }
