@@ -479,7 +479,7 @@ p.footer-caption-text {
 }
 
 section.main-wrapper {
-  margin-top: 120px;
+  padding-top: 120px;
   margin-bottom: 120px;
   width: 100%;
   min-height: 100%;
