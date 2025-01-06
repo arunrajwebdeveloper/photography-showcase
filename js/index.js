@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  gsap.registerPlugin(ScrollTrigger);
+
   // *************************************************************************
   // *************************************************************************
   // *************************************************************************
@@ -116,8 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
   // *************************************************************************
   // *************************************************************************
-
-  gsap.registerPlugin(ScrollTrigger);
 
   const footer = document.querySelector(".main-footer");
   const lastCard = document.querySelector(".card-section.scroll");
