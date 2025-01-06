@@ -32,9 +32,9 @@ body[data-theme="white"] {
 }
 
 body[data-theme="coffee"] {
-  --theme-color: #371b09 !important;
-  --text-color: #b77c56 !important;
-  --scroll-bar-color: #b77c56 !important;
+  --theme-color: #4e343c !important;
+  --text-color: #ffffff !important;
+  --scroll-bar-color: #8a4359 !important;
 }
 
 body {
@@ -77,7 +77,7 @@ body {
   background-color: #f7ffe9;
 }
 .theme-switcher button[data-theme="coffee"] {
-  background-color: #371b09;
+  background-color: #4e343c;
 }
 
 .theme-switcher button:hover {
@@ -91,7 +91,7 @@ body {
   border-color: #c9c9c9 !important;
 }
 .theme-switcher button[data-theme="coffee"].active {
-  border-color: #b77c56 !important;
+  border-color: #8a4359 !important;
 }
 
 /* LIGHTBOX */
