@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       gsap.fromTo(
         menuItems,
-        { y: 20, opacity: 0 },
+        { y: -20, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -275,14 +275,14 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.classList.add("menu__active");
     } else {
       gsap.to(menuItems, {
-        y: 20,
+        y: -20,
         opacity: 0,
         duration: 0.3,
         ease: "power3.in",
         stagger: 0.1,
         onComplete: () => {
           gsap.to(mobileMenu, {
-            y: "-20px",
+            y: -20,
             opacity: 0,
             duration: 0.5,
             ease: "power3.in",

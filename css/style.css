@@ -4,6 +4,7 @@
   --theme-color: #f7ffe9;
   --text-color: #000;
   --scroll-bar-color: #000;
+  --menu-toggle-color: #000;
   --window-height: 100vh;
   --container-width: 1800px;
   --plein-light: "Plein-Light";
@@ -23,18 +24,21 @@ body[data-theme="dark"] {
   --theme-color: #040507 !important;
   --text-color: #dbdbdb !important;
   --scroll-bar-color: #929292 !important;
+  --menu-toggle-color: #dbdbdb;
 }
 
 body[data-theme="white"] {
   --theme-color: #f7ffe9 !important;
   --text-color: #000 !important;
   --scroll-bar-color: #000 !important;
+  --menu-toggle-color: #000;
 }
 
 body[data-theme="coffee"] {
   --theme-color: #4e343c !important;
   --text-color: #ffffff !important;
   --scroll-bar-color: #8a4359 !important;
+  --menu-toggle-color: #ffffff;
 }
 
 body {
@@ -675,7 +679,7 @@ p.about-sub-title {
   transition: transform 250ms cubic-bezier(0.2, 0.6, 0.3, 1),
     width 250ms cubic-bezier(0.2, 0.6, 0.3, 1);
   will-change: transform, width;
-  background-color: #000;
+  background-color: var(--menu-toggle-color);
 }
 
 .menu-lines .line__top {
@@ -700,7 +704,7 @@ p.about-sub-title {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: #fff;
+  background-color: var(--theme-color);
   height: 100%;
   width: 100%;
   transform: translateY(-20px);
@@ -733,7 +737,7 @@ ul.main-sm-navigation-list li {
   list-style-type: none;
 }
 ul.main-sm-navigation-list li a {
-  color: #000;
+  color: var(--text-color);
   font-family: var(--plein-bold);
   font-weight: 800;
   font-size: 2rem;
