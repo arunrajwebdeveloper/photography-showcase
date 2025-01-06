@@ -295,13 +295,13 @@ a.main-logo {
 }
 
 a.main-logo span.logo-title {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-family: var(--plein-bold);
 }
 
 a.main-logo span.logo-sub-title {
   font-family: var(--plein-regular);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   white-space: nowrap;
 }
 
@@ -310,7 +310,7 @@ nav.nav a {
   color: var(--text-color);
   outline: 0;
   font-family: var(--plein-medium);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   position: relative;
   line-height: 1;
   display: inline-block;
@@ -747,9 +747,9 @@ ul.main-sm-navigation-list li {
 }
 ul.main-sm-navigation-list li a {
   color: var(--text-color);
-  font-family: var(--plein-bold);
-  font-weight: 800;
-  font-size: 3rem;
+  font-family: var(--plein-regular);
+  font-weight: 500;
+  font-size: 2.8rem;
   text-decoration: none;
   outline: 0;
   text-transform: uppercase;

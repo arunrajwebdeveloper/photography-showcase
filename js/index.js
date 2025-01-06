@@ -251,6 +251,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuItems = document.querySelectorAll(".main-sm-navigation-list li");
 
   menuToggle.addEventListener("click", () => {
+    const bodyElement = document.body;
+
     if (!menuToggle.classList.contains("menu__active")) {
       gsap.to(mobileMenu, {
         y: 0,
@@ -273,6 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       menuToggle.classList.add("menu__active");
+      bodyElement.style.overflow = "hidden";
     } else {
       gsap.to(menuItems, {
         y: -20,
@@ -294,6 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       menuToggle.classList.remove("menu__active");
+      bodyElement.style.overflow = "";
     }
   });
 });
