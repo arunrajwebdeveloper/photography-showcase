@@ -1,5 +1,9 @@
 /* > 768px */
 @media (min-width: 768px) {
+  .canvas-column:nth-child(2),
+  .canvas-column:nth-child(3) {
+    display: block;
+  }
   .canvas-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -106,7 +110,7 @@
 
 /* > 1366px */
 
-@media (min-width: 1366px) {
+@media (min-width: 1360px) {
   .hero-section h1.hero-title {
     font-size: 40vh;
   }

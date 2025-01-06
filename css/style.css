@@ -194,6 +194,10 @@ body {
 .canvas-column {
   background-color: transparent !important;
   border-right: 1px solid #ddd !important;
+  display: none;
+}
+.canvas-column:nth-child(1) {
+  display: block;
 }
 
 /* width */
