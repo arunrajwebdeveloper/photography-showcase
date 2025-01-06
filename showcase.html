@@ -26,7 +26,7 @@
               <span class="logo-title">subin sudha</span>
               <span class="logo-sub-title">professional photographer</span>
             </a>
-            <nav class="nav">
+            <nav class="nav sm-hidden">
               <a class="link" href="/photography-showcase/about-me.html"
                 >about</a
               >
@@ -37,15 +37,54 @@
             </nav>
           </div>
           <div class="header-column">
-            <div class="theme-switcher">
+            <div class="theme-switcher sm-hidden">
               <button data-theme="white">White</button>
               <button data-theme="coffee">Coffee</button>
               <button data-theme="dark">Dark</button>
             </div>
           </div>
+
+          <div id="menu-toggle" class="menu-toggle md-hidden">
+            <div class="menu-lines">
+              <div class="line__top"></div>
+              <div class="line__bottom"></div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
+
+    <!-- MOBILE SIDEBAR -->
+
+    <div id="main-sm-menu" class="main-sm-menu">
+      <div class="menu-sm-content">
+        <nav class="main-sm-navigations">
+          <ul class="main-sm-navigation-list">
+            <li>
+              <a class="link" href="/photography-showcase/about-me.html">
+                about
+              </a>
+            </li>
+            <li>
+              <a class="link active" href="javascript:void(0)">showcase</a>
+            </li>
+            <li>
+              <a class="link" href="/photography-showcase/contact.html">
+                contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="sm-theme-selector">
+          <div class="theme-switcher">
+            <button data-theme="white">White</button>
+            <button data-theme="coffee">Coffee</button>
+            <button data-theme="dark">Dark</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="main-wrapper">
       <div class="container">

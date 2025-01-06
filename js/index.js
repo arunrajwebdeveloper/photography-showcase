@@ -243,6 +243,59 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   elementRevealUpAnimation(".animateUp");
+
+  // NAVIGATION MENU
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("main-sm-menu");
+  const menuItems = document.querySelectorAll(".main-sm-navigation-list li");
+
+  menuToggle.addEventListener("click", () => {
+    if (!menuToggle.classList.contains("menu__active")) {
+      gsap.to(mobileMenu, {
+        y: 0,
+        opacity: 1,
+        visibility: "visible",
+        duration: 0.5,
+        ease: "power3.out",
+      });
+
+      gsap.fromTo(
+        menuItems,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power3.out",
+          stagger: 0.1,
+        }
+      );
+
+      menuToggle.classList.add("menu__active");
+    } else {
+      gsap.to(menuItems, {
+        y: 20,
+        opacity: 0,
+        duration: 0.3,
+        ease: "power3.in",
+        stagger: 0.1,
+        onComplete: () => {
+          gsap.to(mobileMenu, {
+            y: "-20px",
+            opacity: 0,
+            duration: 0.5,
+            ease: "power3.in",
+            onComplete: () => {
+              mobileMenu.style.visibility = "hidden";
+            },
+          });
+        },
+      });
+
+      menuToggle.classList.remove("menu__active");
+    }
+  });
 });
 
 // ScrollTrigger refresh on resize
