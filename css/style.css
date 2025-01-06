@@ -21,8 +21,8 @@
 
 body[data-theme="dark"] {
   --theme-color: #040507 !important;
-  --text-color: #b4b4b4 !important;
-  --scroll-bar-color: #ddd !important;
+  --text-color: #dbdbdb !important;
+  --scroll-bar-color: #929292 !important;
 }
 
 body[data-theme="white"] {
@@ -340,19 +340,19 @@ a.link.active::before {
   position: relative;
 }
 
-.hero-section h1.hero-title {
+.hero-section .hero-title {
   position: absolute;
   width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-family: var(--plein-light);
+  font-family: var(--plein-bold);
   font-size: 15vh;
   color: var(--text-color);
   letter-spacing: -4px;
   line-height: 0.8;
-  font-weight: 300;
+  font-weight: 800;
   white-space: nowrap;
   word-break: keep-all;
 }
