@@ -718,6 +718,8 @@ p.about-sub-title {
   opacity: 0;
   visibility: hidden;
   z-index: 499;
+  transition: background-color 0.3s;
+  transition-duration: 0.5s;
 }
 .menu-sm-content {
   height: 100%;
@@ -751,6 +753,8 @@ ul.main-sm-navigation-list li a {
   text-decoration: none;
   outline: 0;
   text-transform: uppercase;
+  transition: color 0.3s;
+  transition-duration: 0.5s;
 }
 
 .sm-theme-selector {
