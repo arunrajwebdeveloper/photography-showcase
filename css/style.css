@@ -388,7 +388,7 @@ a.link.active::before {
   white-space: nowrap;
   word-break: keep-all;
 }
-.hero-section .hero-title {
+.hero-section .hero-title div {
   font-family: var(--plein-bold) !important;
 }
 
