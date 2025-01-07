@@ -379,7 +379,7 @@ a.link.active::before {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-family: var(--plein-bold);
+  font-family: var(--plein-bold) !important;
   font-size: 15vh;
   color: var(--text-color);
   letter-spacing: -4px;
@@ -387,6 +387,9 @@ a.link.active::before {
   font-weight: 800;
   white-space: nowrap;
   word-break: keep-all;
+}
+.hero-section .hero-title {
+  font-family: var(--plein-bold) !important;
 }
 
 .card-section.scroll {
