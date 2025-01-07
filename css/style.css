@@ -717,12 +717,12 @@ p.about-sub-title {
 }
 
 .menu__active .menu-lines .line__top {
-  transform: translatex(3.5px) rotate(-135deg);
+  transform: translatex(3.5px) rotate(-45deg);
   width: 28px;
 }
 
 .menu__active .menu-lines .line__bottom {
-  transform: translatex(3.5px) rotate(135deg);
+  transform: translatex(3.5px) rotate(45deg);
   width: 28px;
 }
 
