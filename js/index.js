@@ -147,9 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       gsap.fromTo(
         img,
-        { scale: 1, opacity: 1 },
         {
-          scale: 0.5,
+          scale: 1,
+          opacity: 1,
+        },
+        {
+          // scale: 0.5,
+          scale: 0.8,
           opacity: 0,
           ease: "none",
           scrollTrigger: {

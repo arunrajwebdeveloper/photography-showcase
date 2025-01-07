@@ -367,8 +367,11 @@ a.link.active::before {
   width: 100%;
   height: var(--window-height);
   position: relative;
+  overflow: hidden;
 }
-
+.card-section {
+  perspective: 1200;
+}
 .hero-section .hero-title {
   position: absolute;
   width: 100%;
@@ -400,6 +403,7 @@ a.link.active::before {
   height: 95vh;
   border-radius: 20px;
   overflow: hidden;
+  transform-origin: top center;
 }
 .card-img img {
   height: 100%;
