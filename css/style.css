@@ -657,7 +657,7 @@ p.about-sub-title {
   vertical-align: middle;
   margin: 1rem 0;
   padding: 10px 24px;
-  border: 2px solid #fff;
+  border: 1px solid var(--text-color);
   text-decoration: none;
 }
 .inner-page-wrapper.contact-page-wrapper .sub-title a.link::before {
