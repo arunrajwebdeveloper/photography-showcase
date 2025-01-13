@@ -655,7 +655,15 @@ p.about-sub-title {
   font-size: 1.4rem;
   display: inline-block;
   vertical-align: middle;
-  margin: 0.4rem 0;
+  margin: 1rem 0;
+  padding: 10px 24px;
+  border: 2px solid #fff;
+  text-decoration: none;
+}
+.inner-page-wrapper.contact-page-wrapper .sub-title a.link::before {
+  height: 100%;
+  top: 0;
+  transform: translateY(0);
 }
 
 .contact-social-links {
