@@ -1,3 +1,8 @@
+window.onload = function () {
+  history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let imagesLoaded = 0;
     const loader = document.getElementById("spinner");
     const percentageDisplay = document.getElementById("loading-percentage");
+    const loaderFill = document.getElementById("loader-fill");
 
     images.forEach((imgElement) => {
       const img = new Image();
@@ -90,7 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateLoadingPercentage() {
       const percentage = Math.round((imagesLoaded / totalImages) * 100);
-      percentageDisplay.textContent = `${percentage}%`;
+      loaderFill.style.width = `${percentage}%`;
+      percentageDisplay.textContent = `${percentage}`;
+
+      if (percentage < 100) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
     }
 
     function checkAllImagesLoaded() {
