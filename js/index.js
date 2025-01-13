@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateLoadingPercentage() {
       const percentage = Math.round((imagesLoaded / totalImages) * 100);
       loaderFill.style.width = `${percentage}%`;
-      percentageDisplay.textContent = `${percentage}`;
+      percentageDisplay.innerHTML = `<span>${percentage}</span><span class="percent-symbol">%</span>`;
 
       if (percentage < 100) {
         document.body.style.overflow = "hidden";
@@ -110,10 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (imagesLoaded === totalImages) {
         setTimeout(() => {
           gsap.to(loader, {
-            opacity: 0,
-            duration: 0.5,
+            // opacity: 0,
+            // duration: 0.5,
             onComplete: function () {
-              loader.remove();
+              // loader.remove();
             },
           });
         }, 100);
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   } else {
     const loader = document.getElementById("spinner");
-    loader.remove();
+    // loader.remove();
   }
 
   // *************************************************************************
