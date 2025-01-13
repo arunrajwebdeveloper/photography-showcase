@@ -157,7 +157,7 @@ body {
 .loading-percentage {
   font-size: 12rem;
   color: var(--text-color);
-  font-family: var(--plein-regular);
+  font-family: var(--plein-light);
   position: absolute;
   left: 50%;
   top: 50%;
