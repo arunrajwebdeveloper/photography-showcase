@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     touchMultiplier: 2,
     wheelMultiplier: 2,
     infinite: false,
-    autoResize: false,
+    autoResize: true,
   });
 
   lenis.on("scroll", ScrollTrigger.update);
