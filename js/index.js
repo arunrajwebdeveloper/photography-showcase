@@ -122,8 +122,37 @@ document.addEventListener("DOMContentLoaded", function () {
   if (totalImages > 0) {
     let imagesLoaded = 0;
     const loader = document.getElementById("spinner");
-    const percentageDisplay = document.getElementById("loading-percentage");
-    const loaderFill = document.getElementById("loader-fill");
+    const loaderFill = document.getElementById("spinner-fill");
+    const unit = document.querySelector(".spinner__number--unit");
+    const decimal = document.querySelector(".spinner__number--decimal");
+    const hundred = document.querySelector(".spinner__number--hundred");
+
+    const updatePreloaderNumbers = (percentage) => {
+      const paddedPercentage = String(percentage).padStart(3, "0");
+      const [hundredVal, decimalVal, unitVal] = paddedPercentage;
+
+      gsap.to(hundred, {
+        y: `-${hundredVal * 100}%`,
+        duration: 0.5,
+        ease: "power4.out",
+      });
+
+      gsap.to(decimal, {
+        y: `-${decimalVal * 100}%`,
+        duration: 0.5,
+        ease: "power4.out",
+      });
+
+      gsap.to(unit, {
+        y: `-${unitVal * 100}%`,
+        duration: 0.5,
+        ease: "power4.out",
+      });
+
+      if (loaderFill) {
+        loaderFill.style.width = `${percentage}%`;
+      }
+    };
 
     images.forEach((imgElement) => {
       const img = new Image();
@@ -131,46 +160,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
       img.onload = function () {
         imagesLoaded++;
-        updateLoadingPercentage();
-        checkAllImagesLoaded();
+        const percentage = Math.round((imagesLoaded / totalImages) * 100);
+        updatePreloaderNumbers(percentage);
+
+        if (imagesLoaded === totalImages) {
+          finishPreloader();
+        }
       };
 
       img.onerror = function () {
         console.error(`Failed to load image: ${img.src}`);
         imagesLoaded++;
-        updateLoadingPercentage();
-        checkAllImagesLoaded();
+        const percentage = Math.round((imagesLoaded / totalImages) * 100);
+        updatePreloaderNumbers(percentage);
+
+        if (imagesLoaded === totalImages) {
+          finishPreloader();
+        }
       };
     });
 
-    function updateLoadingPercentage() {
-      const percentage = Math.round((imagesLoaded / totalImages) * 100);
-      loaderFill.style.width = `${percentage}%`;
-      percentageDisplay.innerHTML = `<span>${percentage}</span><span class="percent-symbol">%</span>`;
+    const finishPreloader = () => {
+      setTimeout(() => {
+        gsap.to(loader, {
+          opacity: 0,
+          duration: 0.5,
+          onComplete: function () {
+            loader.remove();
+          },
+        });
+        document.body.style.overflow = ""; // Re-enable scrolling
+      }, 800);
+    };
 
-      if (percentage < 100) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "";
-      }
-    }
-
-    function checkAllImagesLoaded() {
-      if (imagesLoaded === totalImages) {
-        setTimeout(() => {
-          gsap.to(loader, {
-            opacity: 0,
-            duration: 0.5,
-            onComplete: function () {
-              loader.remove();
-            },
-          });
-        }, 100);
-      }
-    }
+    document.body.style.overflow = "hidden"; // Disable scrolling during preload
   } else {
     const loader = document.getElementById("spinner");
     loader.remove();
+    document.body.style.overflow = ""; // Ensure scrolling is enabled
   }
 
   // *************************************************************************
