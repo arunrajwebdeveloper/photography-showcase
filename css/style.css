@@ -59,6 +59,7 @@ body[data-theme="teal"] {
 }
 html {
   background-color: var(--theme-color);
+  overflow-x: hidden;
 }
 body {
   font-size: 16px;
@@ -403,7 +404,7 @@ a.link.active::before {
   overflow: hidden;
 }
 .card-section {
-  perspective: 1200;
+  perspective: 1200px;
 }
 .hero-section .hero-title {
   position: absolute;
