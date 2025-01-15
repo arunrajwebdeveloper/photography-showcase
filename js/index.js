@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
   const lenis = new Lenis({
-    duration: 4,
+    duration: 3,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: "vertical",
     gestureDirection: "vertical",
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     touchMultiplier: 2,
     wheelMultiplier: 2,
     infinite: false,
-    autoResize: true,
+    autoResize: false,
   });
 
   lenis.on("scroll", ScrollTrigger.update);
