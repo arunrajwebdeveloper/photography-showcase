@@ -6,6 +6,43 @@ window.onload = function () {
 document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
+  // Cursor
+
+  const cursorDotOutline = document.querySelector(".cursor-element");
+
+  let x = 0,
+    y = 0;
+  let endX = 0,
+    endY = 0;
+
+  const animateDotOutline = () => {
+    x += (endX - x) / 8;
+    y += (endY - y) / 8;
+    cursorDotOutline.style.top = y + "px";
+    cursorDotOutline.style.left = x + "px";
+
+    requestAnimationFrame(animateDotOutline);
+  };
+
+  animateDotOutline();
+
+  document.addEventListener("mousemove", (e) => {
+    endX = e.clientX - cursorDotOutline.offsetWidth / 2;
+    endY = e.clientY - cursorDotOutline.offsetHeight / 2;
+  });
+
+  document.querySelectorAll("a, button").forEach((interactiveElement) => {
+    interactiveElement.addEventListener("mouseenter", () => {
+      cursorDotOutline.classList.add("hover");
+    });
+
+    interactiveElement.addEventListener("mouseleave", () => {
+      cursorDotOutline.classList.remove("hover");
+    });
+  });
+
+  // SmoothScrolling
+
   const lenis = new Lenis({
     duration: 3,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -183,21 +220,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const finishPreloader = () => {
       setTimeout(() => {
         gsap.to(loader, {
-          opacity: 0,
+          y: "-100%",
           duration: 0.5,
+          ease: "power4.in",
           onComplete: function () {
             loader.remove();
           },
         });
-        document.body.style.overflow = ""; // Re-enable scrolling
+        document.body.style.overflow = "";
       }, 800);
     };
 
-    document.body.style.overflow = "hidden"; // Disable scrolling during preload
+    document.body.style.overflow = "hidden";
   } else {
     const loader = document.getElementById("spinner");
     loader.remove();
-    document.body.style.overflow = ""; // Ensure scrolling is enabled
+    document.body.style.overflow = "";
   }
 
   // *************************************************************************
@@ -241,7 +279,6 @@ document.addEventListener("DOMContentLoaded", function () {
           opacity: 1,
         },
         {
-          // scale: 0.5,
           scale: 0.8,
           opacity: 0,
           ease: "none",

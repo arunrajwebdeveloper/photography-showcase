@@ -3,6 +3,7 @@
   --text-color: #000;
   --scroll-bar-color: #000;
   --menu-toggle-color: #000;
+  --cursor-color: 255, 198, 41;
   --window-height: 100vh;
   --container-width: 1800px;
   --plein-light: "Plein-Light", sans-serif;
@@ -47,18 +48,17 @@ body[data-theme="white"] {
 body[data-theme="coffee"] {
   --theme-color: #4e343c !important;
   --text-color: #ffffff !important;
-  --scroll-bar-color: #8a4359 !important;
+  --scroll-bar-color: #83485c !important;
   --menu-toggle-color: #ffffff;
 }
 
 body[data-theme="teal"] {
   --theme-color: #789678 !important;
   --text-color: #ffffff !important;
-  --scroll-bar-color: #87b787 !important;
+  --scroll-bar-color: #6cac6c !important;
   --menu-toggle-color: #ffffff;
 }
 html {
-  background-color: var(--theme-color);
   overflow-x: hidden;
 }
 body {
@@ -74,6 +74,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
+}
+
+.cursor-element {
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: rgba(var(--cursor-color), 1);
+  pointer-events: none;
+  z-index: 6000;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.cursor-element.hover {
+  background-color: rgba(var(--cursor-color), 0.5);
+  transform: scale(5);
+}
+
+@media screen and (max-width: 1023px) {
+  .cursor-element {
+    display: none !important;
+  }
 }
 
 /* THEME SWITCHER */
@@ -253,8 +278,8 @@ body[data-theme="teal"] .spinner-fill {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 2px;
+  height: 2px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
