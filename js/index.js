@@ -188,7 +188,11 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (loaderFill) {
-        loaderFill.style.width = `${percentage}%`;
+        gsap.to(loaderFill, {
+          width: `${percentage}%`,
+          duration: 1,
+          ease: "power4.out",
+        });
       }
     };
 
