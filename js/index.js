@@ -221,8 +221,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const finishPreloader = () => {
       setTimeout(() => {
         gsap.to(spinnerCounter, {
-          y: "-100%",
-          duration: 0.6,
+          y: "100%",
+          duration: 0.5,
           ease: "power4.in",
           onComplete: function () {
             gsap.to(loader, {
@@ -234,7 +234,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 loader.remove();
               },
             });
-
             document.body.style.overflow = "";
           },
         });
