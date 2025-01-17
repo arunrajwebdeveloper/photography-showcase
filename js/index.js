@@ -160,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let imagesLoaded = 0;
     const loader = document.getElementById("spinner");
     const loaderFill = document.getElementById("spinner-fill");
+    const spinnerCounter = document.querySelector(".spinner__counter");
     const unit = document.querySelector(".spinner__number--unit");
     const decimal = document.querySelector(".spinner__number--decimal");
     const hundred = document.querySelector(".spinner__number--hundred");
@@ -219,16 +220,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const finishPreloader = () => {
       setTimeout(() => {
-        gsap.to(loader, {
+        gsap.to(spinnerCounter, {
           y: "-100%",
-          duration: 0.5,
+          duration: 0.6,
           ease: "power4.in",
           onComplete: function () {
-            loader.remove();
+            gsap.to(loader, {
+              y: "-100%",
+              duration: 0.6,
+              delay: 0.2,
+              ease: "power4.in",
+              onComplete: function () {
+                loader.remove();
+              },
+            });
+
+            document.body.style.overflow = "";
           },
         });
-        document.body.style.overflow = "";
-      }, 800);
+      }, 1000);
     };
 
     document.body.style.overflow = "hidden";

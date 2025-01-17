@@ -1,7 +1,6 @@
 /* > 768px */
 @media (min-width: 768px) {
-  .canvas-column:nth-child(2),
-  .canvas-column:nth-child(3) {
+  .canvas-column {
     display: block;
   }
   .canvas-grid {
