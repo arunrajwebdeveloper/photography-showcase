@@ -65,32 +65,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
   gsap.ticker.lagSmoothing(0);
 
-  // gsap.fromTo(
-  //   ".hero-title",
-  //   { scale: 1 },
-  //   {
-  //     // yPercent: 100,
-  //     ease: "none",
-  //     scale: 10,
-  //     scrollTrigger: {
-  //       trigger: ".card-section",
-  //       scrub: true,
-  //     },
-  //   }
-  // );
-
   const heroTitle = document.querySelector(".hero-title");
 
-  ScrollTrigger.create({
-    trigger: document.body,
-    start: "top top",
-    end: "+=500vh",
-    scrub: 1,
-    onUpdate: (self) => {
-      let opacityProgress = self.progress;
-      heroTitle.style.opacity = 1 - opacityProgress;
-    },
-  });
+  if (!!heroTitle) {
+    // HOME TEXT MOVEMENT
+
+    let mouseX, mouseY;
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      gsap.to(heroTitle, {
+        x: (mouseX / window.innerWidth - 0.5) * 50,
+        y: (mouseY / window.innerHeight - 0.5) * 50,
+        delay: 0.1,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    });
+
+    ScrollTrigger.create({
+      trigger: document.body,
+      start: "top top",
+      end: "+=500vh",
+      scrub: 1,
+      onUpdate: (self) => {
+        let opacityProgress = self.progress;
+        heroTitle.style.opacity = 1 - opacityProgress;
+      },
+    });
+  }
 
   // *************************************************************************
   // *************************************************************************
