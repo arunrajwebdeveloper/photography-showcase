@@ -293,11 +293,15 @@ document.addEventListener("DOMContentLoaded", function () {
         img,
         {
           scale: 1,
-          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          webkitFilter: "blur(0px)",
         },
         {
           scale: 0.8,
-          opacity: 0,
+          y: 100,
+          filter: "blur(10px)",
+          webkitFilter: "blur(10px)",
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -309,41 +313,6 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     });
   }
-
-  // *************************************************************************
-  // *************************************************************************
-  // *************************************************************************
-  // ******************************   SHOWCASE   *****************************
-  // *************************************************************************
-  // *************************************************************************
-  // *************************************************************************
-
-  // if (document.querySelector(".image-grid-item")) {
-  //   let proxy = { skew: 0 },
-  //     skewSetter = gsap.quickSetter(".image-grid-item", "skewY", "deg"), // fast
-  //     clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
-
-  //   ScrollTrigger.create({
-  //     onUpdate: (self) => {
-  //       let skew = clamp(self.getVelocity() / -300);
-  //       if (Math.abs(skew) > Math.abs(proxy.skew)) {
-  //         proxy.skew = skew;
-  //         gsap.to(proxy, {
-  //           skew: 0,
-  //           duration: 0.8,
-  //           ease: "power3",
-  //           overwrite: true,
-  //           onUpdate: () => skewSetter(proxy.skew),
-  //         });
-  //       }
-  //     },
-  //   });
-
-  //   gsap.set(".image-grid-item", {
-  //     transformOrigin: "right center",
-  //     force3D: true,
-  //   });
-  // }
 
   // REVEAL ELEMENT
 

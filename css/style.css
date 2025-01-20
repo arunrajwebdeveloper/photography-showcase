@@ -459,6 +459,7 @@ a.link.active::before {
 }
 
 .card-img {
+  margin-top: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -466,7 +467,7 @@ a.link.active::before {
   max-width: 1600px;
   width: 90%;
   height: 95vh;
-  border-radius: 6px;
+  border-radius: 18px;
   overflow: hidden;
   transform-origin: top center;
 }
@@ -613,16 +614,6 @@ ul.image-grid .image-grid-item img {
   object-fit: cover;
   cursor: pointer !important;
   vertical-align: middle;
-}
-
-.tilt-from-top {
-  transform-origin: top center;
-  transform: rotateX(-15deg) !important;
-}
-
-.tilt-from-bottom {
-  transform-origin: bottom center;
-  transform: rotateX(15deg) !important;
 }
 .showcase-end-message {
   color: var(--text-color);
