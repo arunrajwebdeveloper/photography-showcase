@@ -46,9 +46,9 @@ body[data-theme="white"] {
 }
 
 body[data-theme="coffee"] {
-  --theme-color: #4e343c !important;
+  --theme-color: #5f5b41 !important;
   --text-color: #ffffff !important;
-  --scroll-bar-color: #83485c !important;
+  --scroll-bar-color: #777040 !important;
   --menu-toggle-color: #ffffff;
 }
 
@@ -131,7 +131,7 @@ body {
   background-color: #f7ffe9;
 }
 .theme-switcher button[data-theme="coffee"] {
-  background-color: #4e343c;
+  background-color: #5f5b41;
 }
 .theme-switcher button[data-theme="teal"] {
   background-color: #789678;
@@ -148,7 +148,7 @@ body {
   border-color: #c9c9c9 !important;
 }
 .theme-switcher button[data-theme="coffee"].active {
-  border-color: #8a4359 !important;
+  border-color: #8f885e !important;
 }
 .theme-switcher button[data-theme="teal"].active {
   border-color: #90af90 !important;
