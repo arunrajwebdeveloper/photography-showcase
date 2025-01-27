@@ -3,6 +3,12 @@ window.onload = function () {
   window.scrollTo(0, 0);
 };
 
+function isMobile() {
+  const regex =
+    /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return regex.test(navigator.userAgent);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -67,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const heroTitle = document.querySelector(".hero-title");
 
-  if (!!heroTitle) {
+  if (!!heroTitle && !isMobile()) {
     // HOME TEXT MOVEMENT
 
     let mouseX, mouseY;
