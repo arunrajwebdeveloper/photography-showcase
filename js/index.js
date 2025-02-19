@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to apply parallax effect to any image inside a section
   function applyParallaxEffect(section) {
     let imgContainer = section.querySelector(".card-img");
-    if (!imgContainer) return;
+    if (!imgContainer && isMobile()) return;
     let img = imgContainer.querySelector("img");
 
     gsap.fromTo(
