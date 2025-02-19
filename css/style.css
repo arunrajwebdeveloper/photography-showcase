@@ -477,7 +477,25 @@ a.link.active::before {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(1.4);
+  transform-origin: 50% 50%;
 }
+
+.card-img h2.image-stack-title {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  color: #fff;
+  letter-spacing: 0.2rem;
+  z-index: 5;
+}
+
 .main-footer .container {
   height: 100%;
 }

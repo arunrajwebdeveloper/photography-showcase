@@ -14,6 +14,10 @@
   ul.image-grid .image-grid-item {
     margin-bottom: 4rem;
   }
+
+  .card-img h2.image-stack-title {
+    font-size: 5rem;
+  }
 }
 
 /* > 1024px */
@@ -64,6 +68,10 @@
   .about-description {
     columns: 2;
     column-gap: 3rem;
+  }
+
+  .card-img h2.image-stack-title {
+    font-size: 6rem;
   }
 
   /* gallery */
@@ -121,6 +129,10 @@
 
   ul.image-grid .image-grid-item {
     margin-bottom: 5rem;
+  }
+
+  .card-img h2.image-stack-title {
+    font-size: 8rem;
   }
 }
 

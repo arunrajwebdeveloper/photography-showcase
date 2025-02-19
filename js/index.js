@@ -273,14 +273,37 @@ document.addEventListener("DOMContentLoaded", function () {
   const lastCard = document.querySelector(".card-section.scroll");
   const pinnedSections = gsap.utils.toArray(".card-section.pinned");
 
+  // Function to apply parallax effect to any image inside a section
+  function applyParallaxEffect(section) {
+    let imgContainer = section.querySelector(".card-img");
+    if (!imgContainer) return;
+    let img = imgContainer.querySelector("img");
+
+    gsap.fromTo(
+      img,
+      { yPercent: -20 },
+      {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+  }
+
+  // Apply parallax effect to all pinned sections
   if (pinnedSections.length > 0) {
     pinnedSections.forEach((section, index, sections) => {
-      let img = section.querySelector(".card-img");
       let nextSection = sections[index + 1] || lastCard;
       let endScalePoint = `top+=${
         nextSection.offsetTop - section.offsetTop
       } top`;
 
+      // Pin the section
       gsap.to(section, {
         scrollTrigger: {
           trigger: section,
@@ -295,29 +318,41 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       });
 
-      gsap.fromTo(
-        img,
-        {
-          scale: 1,
-          y: 0,
-          filter: "blur(0px)",
-          webkitFilter: "blur(0px)",
-        },
-        {
-          scale: 0.8,
-          y: 100,
-          filter: "blur(10px)",
-          webkitFilter: "blur(10px)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: endScalePoint,
-            scrub: 1,
+      // Image scale and blur effect
+      let imgContainer = section.querySelector(".card-img");
+      if (imgContainer) {
+        gsap.fromTo(
+          imgContainer,
+          {
+            scale: 1,
+            y: 0,
+            filter: "blur(0px)",
+            webkitFilter: "blur(0px)",
           },
-        }
-      );
+          {
+            scale: 0.8,
+            y: 100,
+            filter: "blur(10px)",
+            webkitFilter: "blur(10px)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: endScalePoint,
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Apply parallax effect to the image inside pinned section
+      applyParallaxEffect(section);
     });
+  }
+
+  // Apply parallax effect to the last card (scroll section)
+  if (lastCard) {
+    applyParallaxEffect(lastCard);
   }
 
   // REVEAL ELEMENT
