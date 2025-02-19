@@ -10,6 +10,7 @@
   --plein-regular: "Plein-Regular", sans-serif;
   --plein-medium: "Plein-Medium", sans-serif;
   --plein-bold: "Plein-Bold", sans-serif;
+  --outfit-bold: "Outfit-Bold", sans-serif;
 }
 html.lenis,
 html.lenis body {
@@ -220,10 +221,10 @@ body {
   width: 100%;
   height: 100%;
   font-size: 8.125rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   color: var(--text-color);
-  font-family: var(--plein-medium);
+  font-family: var(--outfit-bold);
   transform: translateY(0px);
 }
 .spinner-fill {
