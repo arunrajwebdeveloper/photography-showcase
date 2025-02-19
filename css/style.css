@@ -222,6 +222,7 @@ body {
   height: 100%;
   font-size: 8.125rem;
   font-weight: 700;
+  text-align: right;
   line-height: 1;
   color: var(--text-color);
   font-family: var(--outfit-bold);
