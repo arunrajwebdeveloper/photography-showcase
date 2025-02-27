@@ -271,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const footer = document.querySelector(".main-footer");
   const pinnedSections = gsap.utils.toArray(".card-section.pinned");
+  const lastSection = pinnedSections[pinnedSections.length - 1];
 
   // Function to apply parallax effect to any image inside a section
   function applyParallaxEffect(section) {
@@ -297,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Apply parallax effect to all pinned sections
   if (pinnedSections.length > 0) {
     pinnedSections.forEach((section, index, sections) => {
-      let nextSection = sections[index + 1];
+      let nextSection = sections[index + 1] || lastSection;
       let endScalePoint = `top+=${
         nextSection.offsetTop - section.offsetTop
       } top`;
@@ -314,31 +315,33 @@ document.addEventListener("DOMContentLoaded", function () {
         scrub: 1,
       });
 
-      // Image scale and blur effect
-      let imgContainer = section.querySelector(".card-img");
-      if (imgContainer) {
-        gsap.fromTo(
-          imgContainer,
-          {
-            scale: 1,
-            y: 0,
-            filter: "blur(0px)",
-            webkitFilter: "blur(0px)",
-          },
-          {
-            scale: 0.8,
-            y: 100,
-            filter: "blur(10px)",
-            webkitFilter: "blur(10px)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: endScalePoint,
-              scrub: 1,
+      if (section !== lastSection) {
+        // Image scale and blur effect
+        let imgContainer = section.querySelector(".card-img");
+        if (imgContainer) {
+          gsap.fromTo(
+            imgContainer,
+            {
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)",
+              webkitFilter: "blur(0px)",
             },
-          }
-        );
+            {
+              scale: 0.8,
+              y: 100,
+              filter: "blur(10px)",
+              webkitFilter: "blur(10px)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: endScalePoint,
+                scrub: 1,
+              },
+            }
+          );
+        }
       }
 
       // Apply parallax effect to the image inside pinned section
