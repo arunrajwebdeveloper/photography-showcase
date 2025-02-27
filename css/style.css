@@ -456,10 +456,6 @@ a.link.active::before {
   font-family: var(--plein-bold) !important;
 }
 
-.card-section.scroll {
-  position: relative;
-}
-
 .card-img {
   margin-top: 60px;
   position: absolute;

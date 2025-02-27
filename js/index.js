@@ -270,14 +270,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
 
   const footer = document.querySelector(".main-footer");
-  const lastCard = document.querySelector(".card-section.scroll");
   const pinnedSections = gsap.utils.toArray(".card-section.pinned");
 
   // Function to apply parallax effect to any image inside a section
   function applyParallaxEffect(section) {
     let imgContainer = section.querySelector(".card-img");
-    if (isMobile()) return;
-    if (!imgContainer) return;
+    if (isMobile() || !imgContainer) return;
     let img = imgContainer.querySelector("img");
 
     gsap.fromTo(
@@ -299,24 +297,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // Apply parallax effect to all pinned sections
   if (pinnedSections.length > 0) {
     pinnedSections.forEach((section, index, sections) => {
-      let nextSection = sections[index + 1] || lastCard;
+      let nextSection = sections[index + 1];
       let endScalePoint = `top+=${
         nextSection.offsetTop - section.offsetTop
       } top`;
 
       // Pin the section
-      gsap.to(section, {
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end:
-            index === sections.length
-              ? `+=${lastCard.offsetHeight / 2}`
-              : footer.offsetTop - window.innerHeight,
-          pin: true,
-          pinSpacing: false,
-          scrub: 1,
-        },
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "top bottom",
+        pin: true,
+        pinSpacing: false,
+        endTrigger: footer,
+        id: index + 1,
+        scrub: 1,
       });
 
       // Image scale and blur effect
@@ -349,11 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Apply parallax effect to the image inside pinned section
       applyParallaxEffect(section);
     });
-  }
-
-  // Apply parallax effect to the last card (scroll section)
-  if (lastCard) {
-    applyParallaxEffect(lastCard);
   }
 
   // REVEAL ELEMENT
