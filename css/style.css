@@ -820,6 +820,7 @@ p.about-sub-title {
   transform: translateY(-20px);
   opacity: 0;
   visibility: hidden;
+  display: none;
   z-index: 499;
   transition: background-color 0.3s;
   transition-duration: 0.5s;

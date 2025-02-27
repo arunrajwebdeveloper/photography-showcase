@@ -399,6 +399,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const bodyElement = document.body;
 
     if (!menuToggle.classList.contains("menu__active")) {
+      mobileMenu.style.display = "block";
+
       gsap.to(mobileMenu, {
         y: 0,
         opacity: 1,
@@ -436,6 +438,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ease: "power3.in",
             onComplete: () => {
               mobileMenu.style.visibility = "hidden";
+              mobileMenu.style.display = "none";
             },
           });
         },
