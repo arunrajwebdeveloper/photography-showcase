@@ -3,6 +3,8 @@ window.onload = function () {
   window.scrollTo(0, 0);
 };
 
+// isMobile
+
 function isMobile() {
   const regex =
     /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -451,3 +453,78 @@ window.addEventListener("resize", () => {
 window.addEventListener("orientationchange", () => {
   ScrollTrigger.refresh();
 });
+
+// contextmenu
+document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+// function showContextMenu(event) {
+//   event.preventDefault();
+
+//   removeContextMenu();
+
+//   const contextMenu = document.createElement("div");
+//   contextMenu.classList.add("context-menu");
+
+//   const menuItems = [
+//     {
+//       text: "About me",
+//       action: () => {
+//         window.location.href = "/photography-showcase/about-me.html";
+//       },
+//     },
+//     {
+//       text: "Showcase",
+//       action: () => {
+//         window.location.href = "/photography-showcase/showcase.html";
+//       },
+//     },
+//     {
+//       text: "Contact me",
+//       action: () => {
+//         window.location.href = "/photography-showcase/contact.html";
+//       },
+//     },
+//   ];
+
+//   menuItems.forEach((item) => {
+//     const menuItem = document.createElement("div");
+//     menuItem.classList.add("menu-item");
+//     menuItem.textContent = item.text;
+//     menuItem.onclick = () => {
+//       item.action();
+//       removeContextMenu();
+//     };
+//     contextMenu.appendChild(menuItem);
+//   });
+
+//   document.body.appendChild(contextMenu);
+
+//   contextMenu.style.display = "block";
+//   const menuWidth = contextMenu.offsetWidth;
+//   const menuHeight = contextMenu.offsetHeight;
+//   const screenWidth = window.innerWidth;
+//   const screenHeight = window.innerHeight;
+//   let x = event.clientX;
+//   let y = event.clientY;
+
+//   if (x + menuWidth > screenWidth) x = screenWidth - menuWidth - 5;
+//   if (y + menuHeight > screenHeight) y = screenHeight - menuHeight - 5;
+
+//   contextMenu.style.left = `${x}px`;
+//   contextMenu.style.top = `${y}px`;
+
+//   document.addEventListener("click", removeContextMenu);
+//   document.addEventListener("keydown", (e) => {
+//     if (e.key === "Escape") removeContextMenu();
+//   });
+// }
+
+// function removeContextMenu() {
+//   const existingMenu = document.querySelector(".context-menu");
+//   if (existingMenu) {
+//     existingMenu.remove();
+//     document.removeEventListener("click", removeContextMenu);
+//   }
+// }
+
+// document.addEventListener("contextmenu", showContextMenu);
