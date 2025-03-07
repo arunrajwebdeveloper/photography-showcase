@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Cursor
 
-  const cursorDotOutline = document.querySelector(".cursor-element");
+  const CURSOR_DOT_OUTLINE = document.querySelector(".cursor-element");
 
   let x = 0,
     y = 0;
@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const animateDotOutline = () => {
     x += (endX - x) / 8;
     y += (endY - y) / 8;
-    cursorDotOutline.style.top = y + "px";
-    cursorDotOutline.style.left = x + "px";
+    CURSOR_DOT_OUTLINE.style.top = y + "px";
+    CURSOR_DOT_OUTLINE.style.left = x + "px";
 
     requestAnimationFrame(animateDotOutline);
   };
@@ -35,17 +35,17 @@ document.addEventListener("DOMContentLoaded", function () {
   animateDotOutline();
 
   document.addEventListener("mousemove", (e) => {
-    endX = e.clientX - cursorDotOutline.offsetWidth / 2;
-    endY = e.clientY - cursorDotOutline.offsetHeight / 2;
+    endX = e.clientX - CURSOR_DOT_OUTLINE.offsetWidth / 2;
+    endY = e.clientY - CURSOR_DOT_OUTLINE.offsetHeight / 2;
   });
 
   document.querySelectorAll("a, button").forEach((interactiveElement) => {
     interactiveElement.addEventListener("mouseenter", () => {
-      cursorDotOutline.classList.add("hover");
+      CURSOR_DOT_OUTLINE.classList.add("hover");
     });
 
     interactiveElement.addEventListener("mouseleave", () => {
-      cursorDotOutline.classList.remove("hover");
+      CURSOR_DOT_OUTLINE.classList.remove("hover");
     });
   });
 
@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   gsap.ticker.lagSmoothing(0);
 
-  const heroTitle = document.querySelector(".hero-title");
+  const HERO_TITLE = document.querySelector(".hero-title");
 
-  if (!!heroTitle && !isMobile()) {
+  if (!!HERO_TITLE && !isMobile()) {
     // HOME TEXT MOVEMENT
 
     let mouseX, mouseY;
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
-      gsap.to(heroTitle, {
+      gsap.to(HERO_TITLE, {
         x: (mouseX / window.innerWidth - 0.5) * 50,
         y: (mouseY / window.innerHeight - 0.5) * 50,
         delay: 0.1,
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
       scrub: 1,
       onUpdate: (self) => {
         let opacityProgress = self.progress;
-        heroTitle.style.opacity = 1 - opacityProgress;
+        HERO_TITLE.style.opacity = 1 - opacityProgress;
       },
     });
   }
@@ -112,24 +112,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
   // *************************************************************************
 
-  const themeButtons = document.querySelectorAll(".theme-switcher button");
-  const defaultTheme = "white";
-  const savedTheme = localStorage.getItem("ss-theme") || defaultTheme;
+  const THEME_BUTTONS = document.querySelectorAll(".theme-switcher button");
+  const DEFAULT_THEME = "white";
+  const SAVED_THEME = localStorage.getItem("ss-theme") || DEFAULT_THEME;
 
-  document.body.setAttribute("data-theme", savedTheme);
-  highlightActiveButton(savedTheme);
+  document.body.setAttribute("data-theme", SAVED_THEME);
+  highlightActiveButton(SAVED_THEME);
 
-  themeButtons.forEach((button) => {
+  THEME_BUTTONS.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedTheme = button.getAttribute("data-theme");
-      document.body.setAttribute("data-theme", selectedTheme);
-      localStorage.setItem("ss-theme", selectedTheme);
-      highlightActiveButton(selectedTheme);
+      const SELECTED_THEME = button.getAttribute("data-theme");
+      document.body.setAttribute("data-theme", SELECTED_THEME);
+      localStorage.setItem("ss-theme", SELECTED_THEME);
+      highlightActiveButton(SELECTED_THEME);
     });
   });
 
   function highlightActiveButton(theme) {
-    themeButtons.forEach((button) => {
+    THEME_BUTTONS.forEach((button) => {
       if (button.getAttribute("data-theme") === theme) {
         button.classList.add("active");
       } else {
@@ -140,20 +140,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // THEME ANIMATION
 
-  themeButtons.forEach((button) => {
+  THEME_BUTTONS.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedTheme = button.getAttribute("data-theme");
+      const SELECTED_THEME = button.getAttribute("data-theme");
       gsap.to("body", {
         duration: 0.5,
         backgroundColor: getComputedStyle(document.body).getPropertyValue(
-          `--${selectedTheme}-bg`
+          `--${SELECTED_THEME}-bg`
         ),
         color: getComputedStyle(document.body).getPropertyValue(
-          `--${selectedTheme}-color`
+          `--${SELECTED_THEME}-color`
         ),
       });
-      document.body.setAttribute("data-theme", selectedTheme);
-      localStorage.setItem("ss-theme", selectedTheme);
+      document.body.setAttribute("data-theme", SELECTED_THEME);
+      localStorage.setItem("ss-theme", SELECTED_THEME);
     });
   });
 
@@ -165,10 +165,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
   // *************************************************************************
 
-  const images = document.querySelectorAll("img");
-  const totalImages = images?.length;
+  const IMAGE_ELEMENTS = document.querySelectorAll("img");
+  const TOTAL_IMAGE_ELEMETS = IMAGE_ELEMENTS?.length;
 
-  if (totalImages > 0) {
+  if (TOTAL_IMAGE_ELEMETS > 0) {
     let imagesLoaded = 0;
     const loader = document.getElementById("spinner");
     const loaderFill = document.getElementById("spinner-fill");
@@ -208,16 +208,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    images.forEach((imgElement) => {
+    IMAGE_ELEMENTS.forEach((imgElement) => {
       const img = new Image();
       img.src = imgElement.src;
 
       img.onload = function () {
         imagesLoaded++;
-        const percentage = Math.round((imagesLoaded / totalImages) * 100);
+        const percentage = Math.round(
+          (imagesLoaded / TOTAL_IMAGE_ELEMETS) * 100
+        );
         updatePreloaderNumbers(percentage);
 
-        if (imagesLoaded === totalImages) {
+        if (imagesLoaded === TOTAL_IMAGE_ELEMETS) {
           finishPreloader();
         }
       };
@@ -225,10 +227,12 @@ document.addEventListener("DOMContentLoaded", function () {
       img.onerror = function () {
         console.error(`Failed to load image: ${img.src}`);
         imagesLoaded++;
-        const percentage = Math.round((imagesLoaded / totalImages) * 100);
+        const percentage = Math.round(
+          (imagesLoaded / TOTAL_IMAGE_ELEMETS) * 100
+        );
         updatePreloaderNumbers(percentage);
 
-        if (imagesLoaded === totalImages) {
+        if (imagesLoaded === TOTAL_IMAGE_ELEMETS) {
           finishPreloader();
         }
       };
@@ -271,9 +275,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // *************************************************************************
   // *************************************************************************
 
-  const footer = document.querySelector(".main-footer");
-  const pinnedSections = gsap.utils.toArray(".card-section.pinned");
-  const lastSection = pinnedSections[pinnedSections.length - 1];
+  const MAIN_FOOTER = document.querySelector(".main-footer");
+  const PINNED_SECTIONS = gsap.utils.toArray(".card-section.pinned");
+  const LAST_SECTION = PINNED_SECTIONS[PINNED_SECTIONS.length - 1];
 
   // Function to apply parallax effect to any image inside a section
   function applyParallaxEffect(section) {
@@ -298,9 +302,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Apply parallax effect to all pinned sections
-  if (pinnedSections.length > 0) {
-    pinnedSections.forEach((section, index, sections) => {
-      let nextSection = sections[index + 1] || lastSection;
+  if (PINNED_SECTIONS.length > 0) {
+    PINNED_SECTIONS.forEach((section, index, sections) => {
+      let nextSection = sections[index + 1] || LAST_SECTION;
       let endScalePoint = `top+=${
         nextSection.offsetTop - section.offsetTop
       } top`;
@@ -312,12 +316,12 @@ document.addEventListener("DOMContentLoaded", function () {
         end: "top bottom",
         pin: true,
         pinSpacing: false,
-        endTrigger: footer,
+        endTrigger: MAIN_FOOTER,
         id: index + 1,
         scrub: 1,
       });
 
-      if (section !== lastSection) {
+      if (section !== LAST_SECTION) {
         // Image scale and blur effect
         let imgContainer = section.querySelector(".card-img");
         if (imgContainer) {
@@ -386,17 +390,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // NAVIGATION MENU
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("main-sm-menu");
-  const menuItems = document.querySelectorAll(".main-sm-navigation-list li");
+  const MENU_TOGGLE = document.getElementById("menu-toggle");
+  const MOBILE_MENU = document.getElementById("main-sm-menu");
+  const MOBILE_MENU_ITEMS = document.querySelectorAll(
+    ".main-sm-navigation-list li"
+  );
 
-  menuToggle.addEventListener("click", () => {
+  MENU_TOGGLE.addEventListener("click", () => {
     const bodyElement = document.body;
 
-    if (!menuToggle.classList.contains("menu__active")) {
-      mobileMenu.style.display = "block";
+    if (!MENU_TOGGLE.classList.contains("menu__active")) {
+      MOBILE_MENU.style.display = "block";
 
-      gsap.to(mobileMenu, {
+      gsap.to(MOBILE_MENU, {
         y: 0,
         opacity: 1,
         visibility: "visible",
@@ -405,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       gsap.fromTo(
-        menuItems,
+        MOBILE_MENU_ITEMS,
         { y: -20, opacity: 0 },
         {
           y: 0,
@@ -416,30 +422,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      menuToggle.classList.add("menu__active");
+      MENU_TOGGLE.classList.add("menu__active");
       bodyElement.style.overflow = "hidden";
     } else {
-      gsap.to(menuItems, {
+      gsap.to(MOBILE_MENU_ITEMS, {
         y: -20,
         opacity: 0,
         duration: 0.3,
         ease: "power3.in",
         stagger: 0.1,
         onComplete: () => {
-          gsap.to(mobileMenu, {
+          gsap.to(MOBILE_MENU, {
             y: -20,
             opacity: 0,
             duration: 0.5,
             ease: "power3.in",
             onComplete: () => {
-              mobileMenu.style.visibility = "hidden";
-              mobileMenu.style.display = "none";
+              MOBILE_MENU.style.visibility = "hidden";
+              MOBILE_MENU.style.display = "none";
             },
           });
         },
       });
 
-      menuToggle.classList.remove("menu__active");
+      MENU_TOGGLE.classList.remove("menu__active");
       bodyElement.style.overflow = "";
     }
   });
@@ -465,7 +471,7 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 //   const contextMenu = document.createElement("div");
 //   contextMenu.classList.add("context-menu");
 
-//   const menuItems = [
+//   const MENU_ITEMS = [
 //     {
 //       text: "About me",
 //       action: () => {
@@ -486,7 +492,7 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 //     },
 //   ];
 
-//   menuItems.forEach((item) => {
+//   MENU_ITEMS.forEach((item) => {
 //     const menuItem = document.createElement("div");
 //     menuItem.classList.add("menu-item");
 //     menuItem.textContent = item.text;
