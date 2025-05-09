@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   gsap.ticker.lagSmoothing(0);
 
   const HERO_TITLE = document.querySelector(".hero-title");
+  const HERO_IMAGE = document.querySelector(".banner-image");
 
   if (!!HERO_TITLE && !isMobile()) {
     // HOME TEXT MOVEMENT
@@ -81,11 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let mouseX, mouseY;
     document.addEventListener("mousemove", (e) => {
       mouseX = e.clientX;
-      mouseY = e.clientY;
+      // mouseY = e.clientY;
 
-      gsap.to(HERO_TITLE, {
+      gsap.to(HERO_IMAGE, {
         x: (mouseX / window.innerWidth - 0.5) * 50,
-        y: (mouseY / window.innerHeight - 0.5) * 50,
+        // y: (mouseY / window.innerHeight - 0.5) * 50,
         delay: 0.1,
         ease: "power2.out",
         overwrite: "auto",
@@ -95,11 +96,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ScrollTrigger.create({
       trigger: document.body,
       start: "top top",
-      end: "+=500vh",
+      end: "+=600vh",
       scrub: 1,
       onUpdate: (self) => {
         let opacityProgress = self.progress;
         HERO_TITLE.style.opacity = 1 - opacityProgress;
+        HERO_IMAGE.style.opacity = 1 - opacityProgress * 2;
       },
     });
   }
