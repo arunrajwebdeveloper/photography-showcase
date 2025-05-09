@@ -172,6 +172,18 @@
     visibility: hidden !important;
     opacity: 0 !important;
   }
+  .hero-section img.banner-image {
+    max-height: 430px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .hero-section img.banner-image {
+    max-height: 300px;
+  }
+  .hero-section .hero-title {
+    font-size: 14vh;
+  }
 }
 /* md */
 @media screen and (min-width: 768px) {
